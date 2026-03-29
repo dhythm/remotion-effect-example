@@ -16,6 +16,14 @@ import {
   GALLERY_SCENE_DURATION,
   galleryScenes,
 } from "./template-effects-gallery";
+import {
+  CORPORATE_PROMO_DURATION,
+  CorporatePromoShowcase,
+  SAAS_DEMO_DURATION,
+  SaasDemoShowcase,
+  YOUTUBE_MOTION_DURATION,
+  YouTubeMotionShowcase,
+} from "./specialized-showcases";
 
 const advancedDurationInFrames =
   ADVANCED_INTRO_DURATION +
@@ -42,6 +50,30 @@ export const RemotionRoot: React.FC = () => {
         id="AdvancedMotionShowcase"
         component={AdvancedMotionShowcase}
         durationInFrames={advancedDurationInFrames}
+        fps={30}
+        width={1280}
+        height={720}
+      />
+      <Composition
+        id="CorporatePromoShowcase"
+        component={CorporatePromoShowcase}
+        durationInFrames={CORPORATE_PROMO_DURATION}
+        fps={30}
+        width={1280}
+        height={720}
+      />
+      <Composition
+        id="SaasDemoShowcase"
+        component={SaasDemoShowcase}
+        durationInFrames={SAAS_DEMO_DURATION}
+        fps={30}
+        width={1280}
+        height={720}
+      />
+      <Composition
+        id="YouTubeMotionShowcase"
+        component={YouTubeMotionShowcase}
+        durationInFrames={YOUTUBE_MOTION_DURATION}
         fps={30}
         width={1280}
         height={720}
