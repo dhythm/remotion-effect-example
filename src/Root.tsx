@@ -1,20 +1,47 @@
 import "./index.css";
 import { Composition } from "remotion";
-import { MyComposition } from "./Composition";
-import { effectScenes, sceneDurationInFrames } from "./effects";
+import {
+  AdvancedMotionShowcase,
+  TemplateEffectsGallery,
+} from "./Composition";
+import {
+  ADVANCED_INTRO_DURATION,
+  ADVANCED_OUTRO_DURATION,
+  ADVANCED_SCENE_DURATION,
+  advancedScenes,
+} from "./advanced-showcase";
+import {
+  GALLERY_INTRO_DURATION,
+  GALLERY_OUTRO_DURATION,
+  GALLERY_SCENE_DURATION,
+  galleryScenes,
+} from "./template-effects-gallery";
 
-const INTRO_DURATION = 90;
-const OUTRO_DURATION = 90;
-const totalDurationInFrames =
-  INTRO_DURATION + effectScenes.length * sceneDurationInFrames + OUTRO_DURATION;
+const advancedDurationInFrames =
+  ADVANCED_INTRO_DURATION +
+  advancedScenes.length * ADVANCED_SCENE_DURATION +
+  ADVANCED_OUTRO_DURATION;
+
+const galleryDurationInFrames =
+  GALLERY_INTRO_DURATION +
+  galleryScenes.length * GALLERY_SCENE_DURATION +
+  GALLERY_OUTRO_DURATION;
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
-        id="MyComp"
-        component={MyComposition}
-        durationInFrames={totalDurationInFrames}
+        id="TemplateEffectsGallery"
+        component={TemplateEffectsGallery}
+        durationInFrames={galleryDurationInFrames}
+        fps={30}
+        width={1280}
+        height={720}
+      />
+      <Composition
+        id="AdvancedMotionShowcase"
+        component={AdvancedMotionShowcase}
+        durationInFrames={advancedDurationInFrames}
         fps={30}
         width={1280}
         height={720}

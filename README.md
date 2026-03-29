@@ -1,19 +1,18 @@
 # Remotion Effect Showcase
 
-This project is a Remotion video that showcases all 22 effects listed on the React Video Editor Remotion Templates page.
+This repository contains two Remotion compositions:
+
+- `TemplateEffectsGallery`: a gallery of all 22 effects based on the React Video Editor Remotion Templates page
+- `AdvancedMotionShowcase`: an applied motion showcase focused on more advanced Remotion-style animation patterns
 
 Reference:
 [React Video Editor Remotion Templates](https://www.reactvideoeditor.com/remotion-templates)
 
-## Overview
+## Compositions
 
-- Built with Remotion, React, and TypeScript
-- Includes intro, 22 effect scenes, and outro
-- Renders to `out/MyComp.mp4`
+### `TemplateEffectsGallery`
 
-The composition is configured in `src/Root.tsx`, sequenced in `src/Composition.tsx`, and the individual effect scenes are implemented in `src/effects.tsx`.
-
-## Included Effects
+A continuous showcase of the 22 template-inspired effects:
 
 1. Popping Text
 2. Circular Progress
@@ -38,6 +37,35 @@ The composition is configured in `src/Root.tsx`, sequenced in `src/Composition.t
 21. Sound Wave
 22. Animated List
 
+Main files:
+
+- `src/template-effects-gallery.tsx`
+- `src/Composition.tsx`
+- `src/Root.tsx`
+
+### `AdvancedMotionShowcase`
+
+A separate composition that demonstrates more applied Remotion motion design, including:
+
+- cinematic opener structure
+- SaaS-style dashboard motion
+- logo / shape morph style animation
+- kinetic typography
+- layered card staging
+- audio-reactive style finale
+
+Main files:
+
+- `src/advanced-showcase.tsx`
+- `src/Composition.tsx`
+- `src/Root.tsx`
+
+## Tech Stack
+
+- Remotion
+- React
+- TypeScript
+
 ## Commands
 
 Install dependencies:
@@ -58,21 +86,25 @@ Run lint and type check:
 pnpm lint
 ```
 
-Render the video:
+Render a composition:
 
 ```bash
-pnpm build
+pnpm build TemplateEffectsGallery out/template-effects-gallery.mp4
 ```
 
-## Output
+```bash
+pnpm build AdvancedMotionShowcase out/advanced-motion-showcase.mp4
+```
 
-Rendered video path:
+If you prefer using the Remotion CLI directly:
 
-```text
-out/MyComp.mp4
+```bash
+npx remotion render TemplateEffectsGallery out/template-effects-gallery.mp4
+npx remotion render AdvancedMotionShowcase out/advanced-motion-showcase.mp4
 ```
 
 ## Notes
 
-- The source inspiration comes from the templates published on React Video Editor.
-- Some image-based effects are adapted to local abstract backgrounds so the project can render without depending on external image assets.
+- `TemplateEffectsGallery` is the restored 22-effect gallery composition.
+- `AdvancedMotionShowcase` is intentionally separate so the original gallery is preserved.
+- Some image-like scenes are implemented with local abstract backgrounds to avoid dependency on external image assets.

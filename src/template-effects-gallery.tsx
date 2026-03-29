@@ -23,7 +23,9 @@ const palette = {
   green: "#22c55e",
 };
 
-const SCENE_DURATION = 90;
+export const GALLERY_SCENE_DURATION = 90;
+export const GALLERY_INTRO_DURATION = 90;
+export const GALLERY_OUTRO_DURATION = 90;
 
 const full: React.CSSProperties = {
   width: "100%",
@@ -156,7 +158,7 @@ const ScenicBackground: React.FC<{ zoom?: number; panX?: number; panY?: number }
   );
 };
 
-export const effectScenes = [
+export const galleryScenes = [
   "Popping Text",
   "Circular Progress",
   "Pixel Transition",
@@ -180,9 +182,6 @@ export const effectScenes = [
   "Sound Wave",
   "Animated List",
 ] as const;
-
-export const sceneDurationInFrames = SCENE_DURATION;
-export const totalDurationInFrames = effectScenes.length * SCENE_DURATION;
 
 const PoppingTextScene: React.FC = () => {
   const frame = useCurrentFrame();
@@ -235,7 +234,7 @@ const PoppingTextScene: React.FC = () => {
 
 const CircularProgressScene: React.FC = () => {
   const frame = useCurrentFrame();
-  const progress = frameClamp(frame, [0, SCENE_DURATION - 1], [0, 100]);
+  const progress = frameClamp(frame, [0, GALLERY_SCENE_DURATION - 1], [0, 100]);
   const radius = 120;
   const circumference = 2 * Math.PI * radius;
   const dashOffset = circumference - (progress / 100) * circumference;
@@ -469,9 +468,9 @@ const ChartAnimationScene: React.FC = () => {
 
 const KenBurnsScene: React.FC = () => {
   const frame = useCurrentFrame();
-  const zoom = frameClamp(frame, [0, SCENE_DURATION], [1, 1.22]);
-  const panX = frameClamp(frame, [0, SCENE_DURATION], [0, -70]);
-  const panY = frameClamp(frame, [0, SCENE_DURATION], [0, -36]);
+  const zoom = frameClamp(frame, [0, GALLERY_SCENE_DURATION], [1, 1.22]);
+  const panX = frameClamp(frame, [0, GALLERY_SCENE_DURATION], [0, -70]);
+  const panY = frameClamp(frame, [0, GALLERY_SCENE_DURATION], [0, -36]);
   return (
     <SceneShell title="Ken Burns">
       <ScenicBackground zoom={zoom} panX={panX} panY={panY} />
@@ -496,7 +495,7 @@ const ZoomPulseScene: React.FC = () => {
 
 const ParallaxPanScene: React.FC = () => {
   const frame = useCurrentFrame();
-  const x = frameClamp(frame, [0, SCENE_DURATION], [0, -120]);
+  const x = frameClamp(frame, [0, GALLERY_SCENE_DURATION], [0, -120]);
   return (
     <SceneShell title="Parallax Pan" style={{ background: "#020617" }}>
       <AbsoluteFill style={{ overflow: "hidden" }}>
@@ -700,7 +699,7 @@ const GlitchTextScene: React.FC = () => {
 const CardFlipScene: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const progress = spring({ frame, fps, durationInFrames: SCENE_DURATION, config: { damping: 12, mass: 0.7 } });
+  const progress = spring({ frame, fps, durationInFrames: GALLERY_SCENE_DURATION, config: { damping: 12, mass: 0.7 } });
   const rotation = interpolate(progress, [0, 1], [0, 360]);
   return (
     <SceneShell title="Card Flip">
@@ -1065,7 +1064,7 @@ const AnimatedListScene: React.FC = () => {
   );
 };
 
-const sceneMap: Record<(typeof effectScenes)[number], React.FC> = {
+const sceneMap: Record<(typeof galleryScenes)[number], React.FC> = {
   "Popping Text": PoppingTextScene,
   "Circular Progress": CircularProgressScene,
   "Pixel Transition": PixelTransitionScene,
@@ -1090,7 +1089,7 @@ const sceneMap: Record<(typeof effectScenes)[number], React.FC> = {
   "Animated List": AnimatedListScene,
 };
 
-const IntroScene: React.FC = () => {
+export const TemplateEffectsGalleryIntro: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const rise = spring({
@@ -1139,7 +1138,7 @@ const IntroScene: React.FC = () => {
   );
 };
 
-const OutroScene: React.FC = () => {
+export const TemplateEffectsGalleryOutro: React.FC = () => {
   const frame = useCurrentFrame();
   const opacity = frameClamp(frame, [0, 14, 90], [0, 1, 1]);
   const scale = frameClamp(frame, [0, 18], [0.9, 1]);
@@ -1169,15 +1168,5 @@ const OutroScene: React.FC = () => {
   );
 };
 
-export const AllEffectsShowcase: React.FC = () => {
-  return (
-    <AbsoluteFill>
-      <IntroScene />
-    </AbsoluteFill>
-  );
-};
-
-export const getSceneComponent = (title: (typeof effectScenes)[number]) => sceneMap[title];
-
-export const introScene = IntroScene;
-export const outroScene = OutroScene;
+export const getGallerySceneComponent = (title: (typeof galleryScenes)[number]) =>
+  sceneMap[title];
