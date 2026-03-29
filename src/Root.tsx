@@ -3,6 +3,7 @@ import { Composition } from "remotion";
 import {
   AdvancedMotionShowcase,
   TemplateEffectsGallery,
+  WeddingMemoriesShowcase,
 } from "./Composition";
 import {
   ADVANCED_INTRO_DURATION,
@@ -24,6 +25,13 @@ import {
   YOUTUBE_MOTION_DURATION,
   YouTubeMotionShowcase,
 } from "./specialized-showcases";
+import {
+  WEDDING_MEMORY_COUNTDOWN_DURATION,
+  WEDDING_MEMORY_FILM_BRIDGE_DURATION,
+  WEDDING_MEMORY_INTRO_DURATION,
+  WEDDING_MEMORY_OUTRO_DURATION,
+  WEDDING_MEMORY_SCENE_DURATION,
+} from "./wedding-memories";
 
 const advancedDurationInFrames =
   ADVANCED_INTRO_DURATION +
@@ -34,6 +42,13 @@ const galleryDurationInFrames =
   GALLERY_INTRO_DURATION +
   galleryScenes.length * GALLERY_SCENE_DURATION +
   GALLERY_OUTRO_DURATION;
+
+const weddingMemoryDurationInFrames =
+  WEDDING_MEMORY_COUNTDOWN_DURATION +
+  WEDDING_MEMORY_INTRO_DURATION +
+  WEDDING_MEMORY_FILM_BRIDGE_DURATION +
+  WEDDING_MEMORY_SCENE_DURATION * 3 +
+  WEDDING_MEMORY_OUTRO_DURATION;
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -74,6 +89,14 @@ export const RemotionRoot: React.FC = () => {
         id="YouTubeMotionShowcase"
         component={YouTubeMotionShowcase}
         durationInFrames={YOUTUBE_MOTION_DURATION}
+        fps={30}
+        width={1280}
+        height={720}
+      />
+      <Composition
+        id="WeddingMemoriesShowcase"
+        component={WeddingMemoriesShowcase}
+        durationInFrames={weddingMemoryDurationInFrames}
         fps={30}
         width={1280}
         height={720}

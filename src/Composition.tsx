@@ -18,6 +18,9 @@ import {
   TemplateEffectsGalleryIntro,
   TemplateEffectsGalleryOutro,
 } from "./template-effects-gallery";
+import {
+  WeddingMemoriesShowcase,
+} from "./wedding-memories";
 
 const TRANSITION_DURATION = 18;
 
@@ -86,3 +89,5 @@ export const TemplateEffectsGallery = () => {
     </AbsoluteFill>
   );
 };
+
+export {WeddingMemoriesShowcase};
